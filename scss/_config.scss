@@ -43,6 +43,17 @@ $background-opacity:0.9;
     }
 }
 
+//set Tex color function
+@function setText-color($color){
+    //if primary color is greater 40(e.g lighter color) return black 
+    //else if the primary color is a dark color then make font white
+        @if (lightness($color) > 40) {
+            @return #000;
+        } @else{
+            @return #fff;
+        }
+}
+
 
 @mixin mediaSmall{
 
