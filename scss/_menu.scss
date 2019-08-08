@@ -43,3 +43,112 @@
         }
     }
 }
+
+
+//Menu Overlay
+
+.menu{
+
+    position: fixed;
+    top:0;
+    width: 100%;
+    opacity: 0.9;// this gives the effect of see through the portrait image
+    visibility: hidden; //hide the menu: home, about me etc 
+
+    &.show{
+        visibility: visible;//when menu click to form X show menu
+    }
+
+    &-branding, &-nav{
+
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            justify-content: center;
+            float: left;
+            width: 50%;
+            height: 100vh;
+            overflow: hidden; //this get rid of scroll bar in the menu window 
+    }
+
+    &-nav{
+        margin:0;
+        padding: 0;
+        background:darken($primary-color, 5); 
+        list-style: none;
+        transform: translate3d(0, -100%, 0);
+        @include easeOut;
+
+        &.show{
+            //Slide in from Top
+
+            transform:translate3d(0, 0, 0)
+        }
+    }
+
+    &-branding{
+        background: $primary-color;
+       
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+
+        &.show{
+            //slide branding side from Bottom
+
+            transform: translate3d(0,0,0);
+        }
+
+        .portrait{
+            width: 250px;
+            height: 250px;
+            background: url('../img/portrait.jpg');
+            border-radius: 50%;
+            border: solid 2px $secondary-color;
+            
+            
+
+        }
+    }
+
+    //slide the nav-item fro the right window
+    .nav-item{
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+
+        &.show{
+            transform: translate3d(0,0,0)
+        }
+
+        //color the current page button e.g home
+
+        &.current > a{
+            color: $secondary-color;
+        }
+    }
+
+    .nav-link{
+
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 0.8rem 0;
+        font-weight: 300;
+        color:#fff;
+        text-decoration: none;
+        @include easeOut;
+
+        &:hover{
+            color: $secondary-color;
+        }
+    }
+
+
+}
+
+//use sass forloop to delay the nav item slide transition by 0.1s
+@for $x from 1 through 4{
+    .nav-item:nth-child(#{$x}){
+        transition-delay: $x * 0.1s;
+    }
+}
