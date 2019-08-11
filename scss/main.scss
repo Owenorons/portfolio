@@ -146,6 +146,53 @@ main{
     transform: scale(1.1);
 }
 
+// work.htlm style
+
+.projects{
+    display: grid;
+    grid-gap: 0.7rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    img{
+        width: 100%;
+        border:2px #fff solid;
+
+        &:hover{
+            opacity:0.5;
+            border-color: $secondary-color;
+            @include easeOut;
+        }
+    }
+}
+
+
+// projects button styles
+.btn{
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 0;
+    margin-bottom: 0.3rem;
+
+    &:hover{
+        background: $secondary-color;
+        color: setText-color($secondary-color);
+    }
+}
+
+.btn-dark{
+@extend .btn;
+background: darken($primary-color, 50);
+color: #fff;
+
+}
+
+.btn-light{
+    @extend .btn;
+
+    background: lighten($primary-color, $amount: 50);
+    color: #333;
+}
+
 #main-footer{
 
     text-align: center;
